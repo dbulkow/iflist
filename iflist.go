@@ -147,10 +147,14 @@ func main() {
 	rlen := make([]int, len(rtitles))
 
 	for i, r := range routes {
+		var name string
+		if r.OutputInterface-1 < len(ifaces) {
+			name = ifaces[r.OutputInterface-1].Name
+		}
 		rval[i] = []string{
 			r.Dest,
 			r.Gateway,
-			ifaces[r.OutputInterface-1].Name,
+			name,
 			strconv.Itoa(r.Priority),
 			r.Table,
 		}
